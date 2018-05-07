@@ -3,5 +3,8 @@ module.exports = {
   'extends': [
     'plugin:vue/essential',
     '@vue/airbnb'
-  ]
+  ],
+  "rules": {
+      "indent": ["warn", 4]
+  }
 }
