@@ -5,10 +5,12 @@
                 <h1>CheckUrChinese Admin Page</h1>
             </el-row>
         </el-header>
-        <el-main>
-            <el-tabs type="card" @tab-click="handleTabClick">
+        <el-main style="max-width: 960px; min-width: 640px;">
+            <el-tabs type="card" @tab-click="handleTabClick" :active-name="activeTab">
                 <el-tab-pane v-for="tab in tabs"
                              :key="tab.id"
+                             :disabled="isTabDisabled"
+                             :name="tab.link"
                              :label="tab.label">
                 </el-tab-pane>
             </el-tabs>
@@ -17,28 +19,50 @@
     </el-container>
 </template>
 <script>
+import { mapActions } from 'vuex';
+
+const routeRegexp = /(?!^\/[\w\d]+)(\/[\w\d]+)/g;
 export default {
     data() {
         return {
             tabs: [{
-                label: 'Pages',
-                link: 'pages',
+                label: 'Разделы',
+                link: '/pages',
             }, {
-                label: 'Blocks',
-                link: 'blocks',
+                label: 'Блоки',
+                link: '/blocks',
             }, {
-                label: 'Tasks',
-                link: 'tasks',
-            }, {
-                label: 'Tests',
-                link: 'tests',
+                label: 'Задания',
+                link: '/tasks',
             }],
         };
     },
+    computed: {
+        activeTab() {
+            return this.$route.path.replace(routeRegexp, '');
+        },
+        isTabDisabled() {
+            return !!this.$route.path.match(routeRegexp);
+        },
+    },
     methods: {
+        ...mapActions('pages', [
+            'getPages',
+        ]),
+        ...mapActions('blocks', [
+            'getBlocks',
+        ]),
+        ...mapActions('tasks', [
+            'getTasks',
+        ]),
         handleTabClick(tab) {
             this.$router.push({ path: this.tabs[tab.index].link });
         },
+    },
+    created() {
+        this.getPages();
+        this.getBlocks();
+        this.getTasks();
     },
 };
 </script>
