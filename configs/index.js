@@ -1,4 +1,4 @@
 export default {
-    apiURL: 'http://localhost:5000',
+    apiURL: process.env.VUE_APP_API_URL || 'http://localhost:5000',
     tokenName: 'token',
 };
