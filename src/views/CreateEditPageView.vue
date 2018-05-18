@@ -23,5 +23,10 @@ export default {
             'selectedPage',
         ]),
     },
+    mounted() {
+        if (!this.selectedPage) {
+            this.$router.push('/pages');
+        }
+    },
 };
 </script>

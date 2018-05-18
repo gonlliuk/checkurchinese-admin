@@ -23,5 +23,10 @@ export default {
             'selectedBlock',
         ]),
     },
+    mounted() {
+        if (!this.selectedBlock) {
+            this.$router.push('/blocks');
+        }
+    },
 };
 </script>

@@ -23,5 +23,10 @@ export default {
             'selectedTask',
         ]),
     },
+    mounted() {
+        if (!this.selectedTask) {
+            this.$router.push('/tasks');
+        }
+    },
 };
 </script>

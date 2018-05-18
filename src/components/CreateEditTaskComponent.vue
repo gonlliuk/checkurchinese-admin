@@ -249,6 +249,8 @@
 <script>
 import { mapActions, mapState } from 'vuex';
 
+const getCopy = obj => JSON.parse(JSON.stringify(obj));
+
 const defaultVideo = {
     url: '',
 };
@@ -258,7 +260,7 @@ const defaultAnswer = {
 };
 const defaultTest = {
     question: '',
-    answers: [{ ...defaultAnswer }],
+    answers: [getCopy(defaultAnswer)],
 };
 
 const defaultQuestion = {
@@ -290,7 +292,7 @@ export default {
                     text: '',
                     additionalQuestion: '',
                     comment: '',
-                    questions: [{ ...defaultQuestion }],
+                    questions: [getCopy(defaultQuestion)],
                 },
             taskRules: {
                 title: [
@@ -346,7 +348,7 @@ export default {
                 });
         },
         addTestQuestionHandler(test) {
-            test.push({ ...defaultTest });
+            test.push(getCopy(defaultTest));
         },
         deleteTestQuestionHandler(test, index) {
             this.$msgbox({
@@ -361,7 +363,7 @@ export default {
                 });
         },
         addAnswerHandler(answers) {
-            answers.push({ ...defaultAnswer });
+            answers.push(getCopy(defaultAnswer));
         },
         deleteAnswerHandler(answers, index) {
             this.$msgbox({
@@ -382,10 +384,10 @@ export default {
             question.images = [...fileList];
         },
         addVideoHandler(videos) {
-            videos.push({ ...defaultVideo });
+            videos.push(getCopy(defaultVideo));
         },
         addQuestionHandler(questions) {
-            questions.push({ ...defaultQuestion });
+            questions.push(getCopy(defaultQuestion));
         },
         removeVideoHandler(videos, index) {
             videos.splice(index, 1);
