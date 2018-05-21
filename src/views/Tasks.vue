@@ -52,12 +52,12 @@ export default {
             'getTasks',
             'setSelectedTask',
         ]),
-        edit(selectedId) {
-            this.setSelectedTask(selectedId);
+        async edit(selectedId) {
+            await this.setSelectedTask(selectedId);
             this.$router.push('/tasks/edit');
         },
-        create() {
-            this.setSelectedTask(null);
+        async create() {
+            await this.setSelectedTask(null);
             this.$router.push('/tasks/create');
         },
     },

@@ -24,7 +24,7 @@ export default {
         ]),
     },
     mounted() {
-        if (!this.selectedTask) {
+        if (!this.selectedTask && this.isEdit) {
             this.$router.push('/tasks');
         }
     },

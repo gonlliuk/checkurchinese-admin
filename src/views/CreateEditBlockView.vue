@@ -24,7 +24,7 @@ export default {
         ]),
     },
     mounted() {
-        if (!this.selectedBlock) {
+        if (!this.selectedBlock && this.isEdit) {
             this.$router.push('/blocks');
         }
     },

@@ -24,7 +24,7 @@ export default {
         ]),
     },
     mounted() {
-        if (!this.selectedPage) {
+        if (!this.selectedPage && this.isEdit) {
             this.$router.push('/pages');
         }
     },

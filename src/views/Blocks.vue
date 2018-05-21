@@ -52,12 +52,12 @@ export default {
             'getBlocks',
             'setSelectedBlock',
         ]),
-        edit(selectedId) {
-            this.setSelectedBlock(selectedId);
+        async edit(selectedId) {
+            await this.setSelectedBlock(selectedId);
             this.$router.push('/blocks/edit');
         },
-        create() {
-            this.setSelectedBlock(null);
+        async create() {
+            await this.setSelectedBlock(null);
             this.$router.push('/blocks/create');
         },
     },
