@@ -14,7 +14,7 @@
                 <div v-for="task in tasks"
                      :key="task.id"
                      style="padding: 10px; font-size: 17px">
-                    <span>{{ task.title }}</span>
+                    <span>{{ task.title }} ({{ getBlockTitle(task.blockId) }})</span>
                     <el-button type="primary"
                                icon="el-icon-edit"
                                circle
@@ -46,12 +46,19 @@ export default {
         ...mapState('tasks', [
             'tasks',
         ]),
+        ...mapState('blocks', [
+            'blocks',
+        ]),
     },
     methods: {
         ...mapActions('tasks', [
             'getTasks',
             'setSelectedTask',
         ]),
+        getBlockTitle(id) {
+            const block = this.blocks.find(item => item.id === id);
+            return block ? block.title : 'Блок не найден';
+        },
         async edit(selectedId) {
             await this.setSelectedTask(selectedId);
             this.$router.push('/tasks/edit');
