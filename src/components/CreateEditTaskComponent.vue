@@ -292,7 +292,7 @@ export default {
                     text: '',
                     additionalQuestion: '',
                     comment: '',
-                    questions: [getCopy(defaultQuestion)],
+                    questions: [],
                 },
             taskRules: {
                 title: [
