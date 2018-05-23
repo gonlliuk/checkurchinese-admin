@@ -378,10 +378,20 @@ export default {
                 });
         },
         filesChangeHandler(file, fileList, question) {
-            question.images = [...fileList];
+            const reader = new FileReader();
+            reader.onload = () => {
+                question.images.push({
+                    name: file.raw.name,
+                    type: file.raw.type,
+                    size: file.raw.size,
+                    uid: file.raw.uid,
+                    data: reader.result,
+                });
+            };
+            reader.readAsDataURL(file.raw);
         },
         filesDeleteHandler(file, fileList, question) {
-            question.images = [...fileList];
+            question.images = question.images.filter(item => item.uid !== file.uid);
         },
         addVideoHandler(videos) {
             videos.push(getCopy(defaultVideo));
