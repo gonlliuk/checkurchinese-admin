@@ -4,6 +4,7 @@ import user from './user';
 import pages from './pages';
 import blocks from './blocks';
 import tasks from './tasks';
+import home from './home';
 
 Vue.use(Vuex);
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
         pages,
         blocks,
         tasks,
+        home,
     },
     state: {
     },

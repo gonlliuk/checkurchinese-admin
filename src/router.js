@@ -4,9 +4,11 @@ import Tabs from './views/Tabs.vue';
 import Pages from './views/Pages.vue';
 import Blocks from './views/Blocks.vue';
 import Tasks from './views/Tasks.vue';
+import Home from './views/Home.vue';
 import CreateEditPageView from './views/CreateEditPageView.vue';
 import CreateEditBlockView from './views/CreateEditBlockView.vue';
 import CreateEditTaskView from './views/CreateEditTaskView.vue';
+import CreateEditHomeView from './views/CreateEditHomeView.vue';
 
 Vue.use(Router);
 
@@ -14,6 +16,37 @@ export default {
     app: new Router({
         mode: 'history',
         routes: [
+            {
+                path: '/home',
+                component: Tabs,
+                children: [
+                    {
+                        path: '/',
+                        name: 'home',
+                        component: Home,
+                    },
+                    {
+                        path: 'create',
+                        name: 'createHome',
+                        component: CreateEditHomeView,
+                        props: {
+                            isEdit: false,
+                        },
+                    },
+                    {
+                        path: 'edit',
+                        name: 'editHome',
+                        component: CreateEditHomeView,
+                        props: {
+                            isEdit: true,
+                        },
+                    },
+                    {
+                        path: '*',
+                        redirect: '/home',
+                    },
+                ],
+            },
             {
                 path: '/pages',
                 component: Tabs,
@@ -109,7 +142,7 @@ export default {
             },
             {
                 path: '*',
-                redirect: '/pages',
+                redirect: '/home',
             },
         ],
     }),

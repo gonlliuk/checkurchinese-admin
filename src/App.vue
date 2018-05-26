@@ -2,7 +2,7 @@
     <el-container>
         <el-header>
             <el-row type="flex" justify="center">
-                <h1>CheckUrChinese Admin Page</h1>
+                <h1>Multimodal Chinese Admin Page</h1>
             </el-row>
         </el-header>
         <el-main style="max-width: 960px; min-width: 640px;">
@@ -26,6 +26,9 @@ export default {
     data() {
         return {
             tabs: [{
+                label: 'Главная страницы',
+                link: '/home',
+            }, {
                 label: 'Разделы',
                 link: '/pages',
             }, {
@@ -55,6 +58,9 @@ export default {
         ...mapActions('tasks', [
             'getTasks',
         ]),
+        ...mapActions('home', [
+            'getHome',
+        ]),
         handleTabClick(tab) {
             this.$router.push({ path: this.tabs[tab.index].link });
         },
@@ -63,6 +69,7 @@ export default {
         this.getPages();
         this.getBlocks();
         this.getTasks();
+        this.getHome();
     },
 };
 </script>
