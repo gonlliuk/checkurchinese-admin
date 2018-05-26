@@ -9,9 +9,10 @@
     "lint": "vue-cli-service lint --fix"
   },
   "dependencies": {
-    "express": "4.16.3",
+    "express": "4.16.3"
   },
   "devDependencies": {
+    "async-validator": "https://github.com/yiminghe/async-validator/archive/1.8.1.tar.gz",
     "axios": "0.18.0",
     "cache-loader": "1.2.2",
     "element-ui": "2.3.7",
